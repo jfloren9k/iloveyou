@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Te Amo en Cascada</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #0d0d0d;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .te-amo {
+      position: absolute;
+      color: #6a02e0;
+      font-size: 20px;
+      animation: caer 5s linear infinite;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes caer {
+      0% {
+        transform: translateY(-10%);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const crearTeAmo = () => {
+    const span = document.createElement('span');
+    span.classList.add('te-amo');
+    span.textContent = 'TE AMOR FER ❤️';
+
+    // Posición horizontal aleatoria
+    span.style.left = Math.random() * 100 + 'vw';
+
+    // Tamaño de fuente aleatorio
+    span.style.fontSize = Math.random() * 20 + 16 + 'px';
+
+    // Velocidad aleatoria
+    const duracion = Math.random() * 3 + 3; // entre 3s y 6s
+    span.style.animationDuration = duracion + 's';
+
+    document.body.appendChild(span);
+
+    // Eliminar el span cuando termine la animación
+    setTimeout(() => {
+      span.remove();
+    }, duracion * 1000);
+  };
+
+  // Crear varios por segundo
+  setInterval(crearTeAmo, 200);
+</script>
+
+</body>
+</html>
