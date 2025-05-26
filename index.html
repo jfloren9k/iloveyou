@@ -3,27 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Te Amo en Cascada</title>
+  <title>I LOVE YOU</title>
   <style>
     body {
       margin: 0;
       overflow: hidden;
       background-color: #0d0d0d;
       font-family: 'Segoe UI', sans-serif;
+      touch-action: none;
     }
 
-    .te-amo {
+    .te-amor {
       position: absolute;
       color: #6a02e0;
-      font-size: 20px;
-      animation: caer 5s linear infinite;
+      font-size: 5vw;
+      animation: caer 4s linear forwards;
       pointer-events: none;
       user-select: none;
+      white-space: nowrap;
     }
 
     @keyframes caer {
       0% {
-        transform: translateY(-10%);
+        transform: translateY(-10vh);
         opacity: 1;
       }
       100% {
@@ -36,31 +38,28 @@
 <body>
 
 <script>
-  const crearTeAmo = () => {
+  function crearTeAmor() {
     const span = document.createElement('span');
-    span.classList.add('te-amo');
+    span.classList.add('te-amor');
     span.textContent = 'TE AMOR FER ❤️';
 
-    // Posición horizontal aleatoria
+    // Posición y tamaño aleatorio dentro de pantalla móvil
     span.style.left = Math.random() * 100 + 'vw';
-
-    // Tamaño de fuente aleatorio
-    span.style.fontSize = Math.random() * 20 + 16 + 'px';
-
-    // Velocidad aleatoria
-    const duracion = Math.random() * 3 + 3; // entre 3s y 6s
-    span.style.animationDuration = duracion + 's';
+    span.style.fontSize = (Math.random() * 2 + 4) + 'vw';
+    span.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
 
     document.body.appendChild(span);
 
-    // Eliminar el span cuando termine la animación
-    setTimeout(() => {
-      span.remove();
-    }, duracion * 1000);
-  };
+    // Eliminar al terminar la animación
+    span.addEventListener('animationend', () => span.remove());
+  }
 
-  // Crear varios por segundo
-  setInterval(crearTeAmo, 200);
+  // Generar varios por ciclo para mayor efecto
+  setInterval(() => {
+    for (let i = 0; i < 4; i++) {
+      crearTeAmor();
+    }
+  }, 200); // rápido y fluido
 </script>
 
 </body>
